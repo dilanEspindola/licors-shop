@@ -21,11 +21,11 @@ getApi();
 
 const showProducts = (data) => {
   const grid = document.getElementById("main");
-  grid.innerHTML = "";
+  grid.innerHTML += "";
 
   const products = data.map((product) => {
     return `
-      <div class="col-md-4">
+      <div class="col-12 col-md-2 col-lg-3">
         <div class="card mb-4 shadow-sm">
           <img
             src="${product.imagen}"
@@ -33,22 +33,28 @@ const showProducts = (data) => {
             class="card-img-top"
           >
           <div class="card-body">
-            <p class="card-text">${product.nombre}</p>
-            <div class="d-flex justify-content-between align-items-center">
+            <h5 class="card-title">${product.nombre}</h5>
+            <p class="card-text">${product.cantidad}</p>
+            <p class="card-text">${product.presentacion}</p>
+            <div class="d-flex justify-content-end align-items-center">
               <div class="btn-group">
                 <button
                   type="button"
-                  class="btn btn-sm btn-outline-secondary"
+                  class="btn btn-sm btn-success"
                   onclick="updateProduct('${product.id}')"
                   data-bs-toggle="modal"
                   data-bs-target="#exampleModal"
                   data-bs-whatever="@mdo"
                 >
-                  Edit
+                  Editar
                 </button>
-                <button class="btn btn-sm btn-danger" onclick="deleteProduct('${product.id}')" >Eliminar</button>
+                <button
+                  class="btn btn-sm btn-danger"
+                  onclick="deleteProduct('${product.id}')"
+                >
+                  Eliminar
+                </button>
               </div>
-              <small class="text-muted">9 mins</small>
             </div>
           </div>
         </div>
@@ -233,22 +239,21 @@ document.getElementById("search").addEventListener("keyup", async (e) => {
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <button
-                type="button"
-                class="btn btn-sm btn-outline-secondary"
-                onclick="updateProduct('${e.id}')"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                data-bs-whatever="@mdo"
-              >
-                Edit
-              </button>
-              <button class="btn btn-sm btn-danger" onclick="deleteProduct('${e.id}')" >Eliminar</button>
+              type="button"
+              class="btn btn-sm btn-outline-secondary"
+              onclick="updateProduct('${e.id}')"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              data-bs-whatever="@mdo"
+            >
+              Edit
+            </button>
+            <button class="btn btn-sm btn-danger" onclick="deleteProduct('${e.id}')" >Eliminar</button>
+              </div>
             </div>
-            <small class="text-muted">9 mins</small>
           </div>
         </div>
       </div>
-    </div>
       `;
     }
   });
